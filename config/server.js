@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
 const expressValidator = require('express-validator');
+const createError = require('http-errors');
 const cors = require('cors');
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 app.use(expressLayouts);
+app.set('views', ('./app/views'));
 app.use(express.static('./app/public'));
 app.use(bodyParser.urlencoded({
     extended:true
@@ -26,5 +28,29 @@ consign()
     .then('./app/models')
     .then('./app/controllers')
     .into(app);
+
+//Tratativa de erros com código 404 (not found)
+app.use(function (req, res) {
+    res.status('404');
+    res.render('errors/error_404', {
+        title: 'Error 404'
+    });
+});
+
+
+//Tratativa de erros com código 500 (internal server error)
+app.use(function (err, req, res) {
+    console.log(err.stack);
+    res.status(500);
+    res.render('errors/error_500', {
+        title: 'Error 500'
+    });
+});
+
+//401 erro de autorização
+app.use(function (req, res, next) {
+    if (!req.user) return next(createError(401, 'Favor realizar login para visualizar a p�gina.'))
+    next()
+})
 
 module.exports = app;
