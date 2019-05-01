@@ -4,7 +4,7 @@ const connMySQL = function(){
         host: 'localhost', //AWS instance
         user: 'root',
         port: '3306',
-        password: 'victoradmin',
+        password: 'admin', //victoradmin 
         database: 'auma' 
     })
 }
