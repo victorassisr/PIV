@@ -1,5 +1,5 @@
 const app = require('./config/server');
-
-app.listen(3000, function(){
-    console.log("Servidor ON, port 3000");
+const port = 3000;
+app.listen(port, function(){
+    console.log("Servidor ON na porta " + port);
 });
