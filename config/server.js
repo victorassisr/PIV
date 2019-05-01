@@ -20,10 +20,10 @@ app.use(expressValidator());
 app.use(morgan('dev'));
 
 consign()
-    .include('app/routes')
-    .then('config/dbConnection.js')
-    .then('app/models')
-    .then('app/controllers')
+    .include('./app/routes')
+    .then('./config/dbConnection.js')
+    .then('./app/models')
+    .then('./app/controllers')
     .into(app);
 
 module.exports = app;
