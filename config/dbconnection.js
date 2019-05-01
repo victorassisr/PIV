@@ -1,10 +1,11 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const connMySQL = function(){
     return connection = mysql.createConnection({
-        host: 'databaseinstance.cvubxoiqjjki.us-east-1.rds.amazonaws.com', //AWS instance
+        host: 'localhost', //AWS instance
         user: 'root',
-        password: 'password_',
-        database: 'cadastro' 
+        port: '3306',
+        password: 'victoradmin',
+        database: 'auma' 
     })
 }
 

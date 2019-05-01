@@ -15,13 +15,14 @@ app.use(express.static('./app/public'));
 app.use(bodyParser.urlencoded({
     extended:true
 }));
+app.use(bodyParser.json());
 
 app.use(expressValidator());
 app.use(morgan('dev'));
 
 consign()
     .include('./app/routes')
-    .then('./config/dbConnection.js')
+    .then('./config/dbconnection.js')
     .then('./app/models')
     .then('./app/controllers')
     .into(app);
