@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
 const expressValidator = require('express-validator');
+const cors = require('cors');
 const app = express();
 
+app.use(cors());
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 app.use(expressLayouts);
