@@ -7,7 +7,7 @@ module.exports = function(application){
         application.app.controllers.empilhadeira.getEmpilhadeira(application,req,res, req.params.id);
     });
 
-    application.get('/empilhadeira/excluir/:id', function(req,res){
+    application.delete('/empilhadeira/excluir/:id', function(req,res){
         application.app.controllers.empilhadeira.removeEmpilhadeira(application,req,res, req.params.id);
     });
 
