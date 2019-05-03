@@ -4,7 +4,7 @@ const connMySQL = function(){
         host: 'localhost', 
         user: 'root', 
         port: '3306', 
-        password: '', 
+        password: 'admin', 
         database: 'auma'  
     })
 }
