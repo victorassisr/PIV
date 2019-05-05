@@ -63,30 +63,29 @@ module.exports.saveTipoUsuario = function(application, req, res){
 
 	var tipoUsuarioDAO = new application.app.models.TipoUsuarioDAO(application);
 
-	tipoUsuarioDAO.checkForEquals(tipoUsuario.descricao, function(err, data){
-		if(data[0] === undefined){
-			if(tipoUsuario.descricao != undefined && tipoUsuario.descricao != ""){
+	if(tipoUsuario.descricao != undefined && tipoUsuario.descricao != ""){
+		tipoUsuarioDAO.checkForEquals(tipoUsuario.descricao, function(err, data){
+			if(data[0] === undefined){
+					tipoUsuarioDAO.saveTipoUsuario(tipoUsuario, function(err, data){
+				    
+					    if(err){
+					    	throw err;
+					    }
 
-				tipoUsuarioDAO.saveTipoUsuario(tipoUsuario, function(err, data){
-			    
-				    if(err){
-				    	throw err;
-				    }
-
-				    if(data.affectedRows == 1){
-				    	res.send({ sucesso : "Inserido com sucesso", lastInsertId : data.insertId });
-				    }else{
-				    	res.status(500).send({ erro : "Houve um erro ao cadastrar!"});
-				    }
-			    
-				});
+					    if(data.affectedRows == 1){
+					    	res.send({ sucesso : "Inserido com sucesso", lastInsertId : data.insertId });
+					    }else{
+					    	res.status(500).send({ erro : "Houve um erro ao cadastrar!"});
+					    }
+				    
+					});
 			} else {
-				res.status(400).send({ erro : "Os parametros especificados são inválidos!" });
+				res.send({ info : "Já existe um tipo de usuario igual!" });
 			}
-		} else {
-			res.send({ info : "Já existe um tipo de usuario igual!" });
-		}
-	});
+		});
+	} else {
+		res.status(400).send({ erro : "Os parametros especificados são inválidos!" });
+	}
 }
 
 module.exports.editTipoUsuario = function(application, req, res){
@@ -96,32 +95,30 @@ module.exports.editTipoUsuario = function(application, req, res){
 
 	var tipoUsuarioDAO = new application.app.models.TipoUsuarioDAO(application);
 
-	tipoUsuarioDAO.checkForEquals(tipoUsuario.descricao, function(err, data){
+	if(tipoUsuario.descricao != undefined && tipoUsuario.descricao != ""){
 
-		if(data[0] === undefined){
-			
+		tipoUsuarioDAO.checkForEquals(tipoUsuario.descricao, function(err, data){
 
-			if(tipoUsuario.descricao != undefined && tipoUsuario.descricao != ""){
-			tipoUsuarioDAO.editTipoUsuario(req.params.id, tipoUsuario, function(err, data){
-			    
-					if(err){
-					    throw err;
-					}
+			if(data[0] === undefined){
+				tipoUsuarioDAO.editTipoUsuario(req.params.id, tipoUsuario, function(err, data){
+				    
+						if(err){
+						    throw err;
+						}
 
-					if(data.affectedRows == 1){
-					    res.send({ sucesso : "Alterado com sucesso", changedRows : data.changedRows });
-					}else{
-					    res.status(500).send({ erro : "Houve um erro ao alterar o registro!"});
-					}
+						if(data.affectedRows == 1){
+						    res.send({ sucesso : "Alterado com sucesso", changedRows : data.changedRows });
+						}else{
+						    res.status(500).send({ erro : "Houve um erro ao alterar o registro!"});
+						}
 
-				});
+					});
+
 			} else {
-				res.status(400).send({ erro : "Os parametros especificados são inválidos!" });
+				res.send({ info : "Já existe um tipo de usuario igual!" });
 			}
-
-
-		} else {
-			res.send({ info : "Já existe um tipo de usuario igual!" });
-		}
-	});
+		});
+	} else {
+		res.status(400).send({ erro : "Os parametros especificados são inválidos!" });
+	}
 }
