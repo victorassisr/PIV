@@ -2,16 +2,9 @@ const express = require('express');
 const consign = require('consign');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const expressLayouts = require('express-ejs-layouts');
-const expressValidator = require('express-validator');
 const createError = require('http-errors');
 const app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', './app/views');
-app.use(expressLayouts);
-app.set('views', ('./app/views'));
-app.use(express.static('./app/public'));
 app.use(bodyParser.urlencoded({
     extended:true
 }));
