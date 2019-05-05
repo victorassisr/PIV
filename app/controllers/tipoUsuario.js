@@ -66,19 +66,19 @@ module.exports.saveTipoUsuario = function(application, req, res){
 	if(tipoUsuario.descricao != undefined && tipoUsuario.descricao != ""){
 		tipoUsuarioDAO.checkForEquals(tipoUsuario.descricao, function(err, data){
 			if(data[0] === undefined){
-					tipoUsuarioDAO.saveTipoUsuario(tipoUsuario, function(err, data){
+				tipoUsuarioDAO.saveTipoUsuario(tipoUsuario, function(err, data){
 				    
-					    if(err){
-					    	throw err;
-					    }
+					if(err){
+					    throw err;
+					}
 
-					    if(data.affectedRows == 1){
-					    	res.send({ sucesso : "Inserido com sucesso", lastInsertId : data.insertId });
-					    }else{
-					    	res.status(500).send({ erro : "Houve um erro ao cadastrar!"});
-					    }
+					if(data.affectedRows == 1){
+					    res.send({ sucesso : "Inserido com sucesso", lastInsertId : data.insertId });
+					}else{
+					    res.status(500).send({ erro : "Houve um erro ao cadastrar!"});
+					}
 				    
-					});
+				});
 			} else {
 				res.send({ info : "Já existe um tipo de usuario igual!" });
 			}
@@ -102,17 +102,17 @@ module.exports.editTipoUsuario = function(application, req, res){
 			if(data[0] === undefined){
 				tipoUsuarioDAO.editTipoUsuario(req.params.id, tipoUsuario, function(err, data){
 				    
-						if(err){
-						    throw err;
-						}
+					if(err){
+						throw err;
+					}
 
-						if(data.affectedRows == 1){
-						    res.send({ sucesso : "Alterado com sucesso", changedRows : data.changedRows });
-						}else{
-						    res.status(500).send({ erro : "Houve um erro ao alterar o registro!"});
-						}
+					if(data.affectedRows == 1){
+						res.send({ sucesso : "Alterado com sucesso", changedRows : data.changedRows });
+					}else{
+						res.status(500).send({ erro : "Houve um erro ao alterar o registro!"});
+					}
 
-					});
+				});
 
 			} else {
 				res.send({ info : "Já existe um tipo de usuario igual!" });
