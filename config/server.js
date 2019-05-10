@@ -3,8 +3,15 @@ const consign = require('consign');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const createError = require('http-errors');
+const expressLayouts = require('express-ejs-layouts');	
+const expressValidator = require('express-validator');
 const app = express();
 
+app.set('view engine', 'ejs');	
+app.set('views', './app/views');	
+app.use(expressLayouts);	
+app.use(express.static('./app/public'));
+app.use(expressValidator());
 app.use(bodyParser.urlencoded({
     extended:true
 }));
@@ -38,7 +45,7 @@ app.use(function (err, req, res) {
 
 //401 erro de autorização
 app.use(function (req, res, next) {
-    if (!req.user) return next(createError(401, 'Favor realizar login para visualizar a p�gina.'))
+    if (!req.user) return next(createError(401, 'Favor realizar login para visualizar a página.'))
     next()
 })
 
