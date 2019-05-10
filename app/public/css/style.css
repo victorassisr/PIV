@@ -1,0 +1,20 @@
+.content{
+  width: 50%;
+  height: 100%;    
+  margin: 0px auto;
+  position: relative; 
+  border-style: solid;
+  text-align: center;
+  border-color: SaddleBrown;
+  background: Sienna;
+  border-width: 10px;  
+  
+
+}
+.login{
+	border-style: inset;
+	background: NavajoWhite;
+	border-color: SaddleBrown;
+    border-width: 15px;  
+
+}
