@@ -1,13 +1,21 @@
 <%- contentFor('body') %>
 <div class="container">
 		<div class="content">
-			<img src="img/logo.png"style="width:300px;height:300px;border-radius: 500px;">
-			<div class="login">	
-				<form>
-					<fieldset>
-						<input type="text" name="email" placeholder="Email"><br>
-						<input type="password" name="senha" placeholder="Senha"><br><br>
-						<button type="button" style="	
+<style type="text/css">
+body{
+	background-image: url(img/cafe.png);
+    position: relative;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+</style>
+<img src="img/logo.png" style="width:300px;height:300px;border-radius: 500px;">
+<div class="login">	
+<form>
+<fieldset>
+    <input type="email" class="input" name="email" placeholder="Email" required><br>
+	<input type="password" class="input" name="senha" placeholder="Senha" required><br><br>
+	<button type="submit" style="	
 					
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: 14px;
@@ -40,13 +48,7 @@
 						inset 0px 0px 10px rgba(107,73,60,0.7);
 					text-shadow:
 						0px -1px 0px rgba(94,68,51,0.4),
-						0px 1px 0px rgba(77,49,8,0.3);
-
-
-" 	
-
-
-
+						0px 1px 0px rgba(77,49,8,0.3);" 	                    
 						>Login</button>
 					</fieldset>
 				</form>

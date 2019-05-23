@@ -1,5 +1,5 @@
 .content{
-  width: 50%;
+  width: 80%;
   height: 100%;    
   margin: 0px auto;
   position: relative; 
@@ -15,6 +15,11 @@
 	border-style: inset;
 	background: NavajoWhite;
 	border-color: SaddleBrown;
-    border-width: 15px;  
-
+  border-width: 15px;  
+}
+.input{
+    padding:10px;
+    display: block;
+    width: 95%;
+    height: 95%;
 }

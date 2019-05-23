@@ -33,7 +33,6 @@ app.use(function (req, res) {
     });
 });
 
-
 //Tratativa de erros com código 500 (internal server error)
 app.use(function (err, req, res) {
     console.log(err.stack);

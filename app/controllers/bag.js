@@ -1,88 +1,43 @@
-module.exports.getBags = function(application,req,res){
-
-	var bagDAO = new application.app.models.BagDAO(application);
-    bagDAO.getBags(function(err, data){
-    	if(err){
-    		throw err;
-    	}
-    	res.send(data);
-    });
+module.exports.formulario_inclusao_bag = function(application,req,res){
+      
+      res.render('bag/form', {
+        title: 'Cadastro de bag',
+        validacao: {},
+        bag: {}
+      });
 }
 
-module.exports.getBag = function(application, req, res, id){
+module.exports.salvar_bag = function(application, req, res){
+    
+      const bag = req.body;
+      
+      req.assert('rfid', 'RFID é obrigatório').notEmpty();
+      req.assert('lote', 'Lote é obrigatório').notEmpty();
+      req.assert('lote', 'O lote deve conter entre 5 e 10 caracteres').len(5, 10);     
+      req.assert('data_entrada', 'Data de entrada é obrigatório').notEmpty();
+      req.assert('data_saida', 'Data de saida é obrigatório').notEmpty();
+      req.assert('peso', 'Peso é obrigatório').notEmpty();
+      req.assert('localizacao_fila', 'Localização da fila é obrigatório').notEmpty();
+      req.assert('localizacao_altura', 'Localização da altura é obrigatório').notEmpty();
+      req.assert('localizacao_setor', 'Localização de setor é obrigatório').notEmpty();
+      req.assert('localizacao_setor', 'Localização de setor deve conter pelo menos 1 caracter').len(1, 1);
+      req.assert('status_processamento', 'Status de processamento é obrigatório').notEmpty();
 
-	var id = req.params.id;
+      const errors = req.validationErrors();
 
-	var bagDAO = new application.app.models.BagDAO(application);
-		bagDAO.getBag(id, function(err, data){
-	    if(err){
-	    	throw err;
-	    }
-	    res.send(data);
-	});
-}
-
-module.exports.removeBag = function(application, req, res, id){
-
-	var id = req.params.id;
-	
-	var bagDAO = new application.app.models.BagDAO(application);
-		bagDAO.removeBag(id, function(err, data){
-	    if(err){
-	    	throw err;
-	    }
-	    if(data.affectedRows == 1){
-	    	res.send({
-                sucesso : "Excluído com sucesso"
+      if(errors){
+            res.render('bag/form', {
+               validacao: errors,
+               bag: bag,
+               title: 'Cadastro de Bag'
             });
-	    } else {
-	    	res.send({
-                erro : "Não foi possível excluir. Registro não existe ou já foi apagado"
-            });
-	    }
-	});
-}
 
-module.exports.saveBag = function(application, req, res){
-
-	var bagDAO = new application.app.models.BagDAO(application);
-		bagDAO.saveBag(req.body, function(err, data){
-	    
-	    if(err){
-	    	throw err;
-	    }
-
-	    if(data.affectedRows == 1){
-	    	res.send({ 
-                sucesso : "Inserido com sucesso", lastInsertId : data.insertId 
-            });
-	    }else{
-	    	res.send({ 
-                erro : "Houve um erro ao cadastrar"
-            });
-	    }
-	    
-	});
-}
-
-module.exports.editBag = function(application, req, res){
-
-	var bagDAO = new application.app.models.BagDAO(application);
-    bagDAO.editBag(req.params.id, req.body, function(err, data){
-	    
-	    if(err){
-	    	throw err;
-	    }
-
-	    if(data.affectedRows == 1){
-	    	res.send({ 
-                sucesso : "Alterado com sucesso", changedRows : data.changedRows 
-            });
-	    }else{
-            res.send({ 
-                erro : "Houve um erro ao alterar o registro"
-        });
-	    }
-
-	});
+            return;
+      }
+      
+      const connection = application.config.dbConnection();
+      const bagModel = new application.app.models.BagDAO(connection);
+      bagModel.salvar_bag(bag, function(error, result){
+            res.redirect('/bags');
+      })
 }

@@ -1,21 +1,11 @@
 module.exports = function(application){
-  application.get('/bags', function(req, res){
-      application.app.controllers.bag.getBags(application,req,res);
-  });
-
-  application.get('/bag/:id', function(req, res){
-      application.app.controllers.bag.getBag(application,req,res, req.params.id);
-  });
-
-  application.delete('/bag/excluir/:id', function(req, res){
-      application.app.controllers.bag.removeBag(application,req,res, req.params.id);
-  });
-
-  application.post('/bag/cadastrar', function(req, res){
-      application.app.controllers.bag.saveBag(application,req,res);
-  });
-
-  application.put('/bag/editar/:id', function(req, res){
-      application.app.controllers.bag.editBag(application,req,res);
-  });
+    application.get('/bag',function(req,res){
+       application.app.controllers.bag.formulario_inclusao_bag(application, req, res);
+    });
+    application.post('/bag/salvar', function(req, res){
+       application.app.controllers.bag.salvar_bag(application, req, res);
+    })
+    application.get('/bags',function(req,res){
+      application.app.controllers.bag.obter_bags(application, req, res);
+   });
 }

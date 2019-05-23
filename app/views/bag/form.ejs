@@ -1,0 +1,58 @@
+<%- contentFor('body') %>
+<div class="container">
+		<% if(validacao.length) {%>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-danger">
+						<strong>Atenção!</strong>
+						<ul>
+						<% for(var i=0;i < validacao.length;i++) {%>
+							<li><%=validacao[i].msg%></li>
+							<% } %>
+						</ul>
+					</div>
+				</div>
+			</div>
+<%}%>
+
+<div class="row">
+<div class="col-md-12">
+<form action="/bag/salvar" method="POST"> 
+<div class="form-group">
+    <label for="rfid">RFID</label>
+    <input type="number" class="form-control" id="rfid" name="rfid" value="<%=bag.rfid%>" placeholder="Insira a codificação do RFID">
+</div>
+<div class="form-group">
+    <label for="lote">Lote</label>
+    <input type="text" class="form-control" id="lote" name="lote" value="<%=bag.lote%>" placeholder="Insira o lote">
+</div>
+<div class="form-group">
+    <label for="data_entrada">Data de entrada</label>
+    <input type="date" class="form-control" id="data_entrada" name="data_entrada" value="<%=bag.data_entrada%>">
+</div>
+<div class="form-group">
+    <label for="data_saida">Data de saida</label>
+    <input type="date" class="form-control" id="data_saida" name="data_saida" value="<%=bag.data_saida%>">
+</div>
+<div class="form-group">
+    <label for="peso">Peso</label>
+    <input type="number" class="form-control" id="peso" name="peso" value="<%=bag.peso%>" placeholder="Insira o peso">
+</div>
+<div class="form-group">
+    <label for="localizacao_fila">Localização da fila</label>
+    <input type="text" class="form-control" id="localizacao_fila" name="localizacao_fila" value="<%=bag.localizacao_fila%>" placeholder="Insira a localizacao da fila">
+</div>
+<div class="form-group">
+    <label for="localizacao_altura">Localização da altura</label>
+    <input type="text" class="form-control" id="localizacao_altura" name="localizacao_altura" value="<%=bag.localizacao_autura%>" placeholder="Insira a localização da altura">
+</div>
+<div class="form-group">
+    <label for="localizacao_setor">Localização de setor</label>
+    <input type="text" class="form-control" id="localizacao_setor" name="localizacao_setor" value="<%=bag.localizacao_setor%>" placeholder="Insira a localizacao do setor">
+</div>
+<div class="form-group">
+    <label for="status_processamento">Status de processamento</label>
+    <input type="number" class="form-control" id="status_processamento" name="status_processamento" value="<%=bag.status_processamento%>" placeholder="Insira o status de processamento">
+</div>
+<button type="submit" class="btn btn-primary">Enviar</button>
+</form>
