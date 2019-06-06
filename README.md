@@ -14,4 +14,7 @@ npm start ou nodemon
 <br><a href="https://nodejs.org/en/docs/">Nodejs Docs</a>
 <br><a href="https://developer.mozilla.org/pt-BR/docs/Learn/Server-side/Express_Nodejs/roteamentos">Roteamento e Controladores</a><br>
 <a href="https://express-validator.github.io/docs/">Express Validator</a><br>
-<a href="https://www.npmjs.com/package/express-ejs-layouts">Express Layout</a>
+<a href="https://www.npmjs.com/package/express-ejs-layouts">Express Layout</a><br>
+<a href="https://www.digitalocean.com/community/tutorials/how-to-use-winston-to-log-node-js-applications">Uso do Winston para logs</a><br>
+<a href="https://jasmine.github.io/setup/nodejs.html">Uso do Jasmine para testes</a><br>
+
