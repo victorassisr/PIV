@@ -38,6 +38,6 @@ module.exports.salvar_bag = function(application, req, res){
       const connection = application.config.dbConnection();
       const bagModel = new application.app.models.BagDAO(connection);
       bagModel.salvar_bag(bag, function(error, result){
-            res.redirect('/bags');
+            res.send('Salvo');
       })
 }

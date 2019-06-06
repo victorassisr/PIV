@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 
 consign()
     .include('./app/routes')
-    .then('./config/dbconnection.js')
+    .then('./config/dbConnection.js')
     .then('./app/models')
     .then('./app/controllers')
     .into(app);

@@ -1,0 +1,25 @@
+<%- contentFor('body') %>
+<div class="container">
+		<% if(validacao.length) {%>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-danger">
+						<strong>Atenção!</strong>
+						<ul>
+						<% for(var i=0;i < validacao.length;i++) {%>
+							<li><%=validacao[i].msg%></li>
+							<% } %>
+						</ul>
+					</div>
+				</div>
+			</div>
+<%}%>
+
+<form action="/proprietario/salvar" method="POST">
+  <div class="form-group">
+    <label for="nome">Nome</label>
+    <input type="nome" class="form-control" id="nome" name="nome" placeholder="Nome do proprietário">
+  </div>
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+</div>

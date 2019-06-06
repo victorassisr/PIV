@@ -46,7 +46,7 @@ CREATE TABLE Proprietario (
 
 
 CREATE TABLE Email (
-                IDEmail TINYINT NOT NULL,
+                IDEmail INT NOT NULL,
                 IDProprietario INT NOT NULL,
                 Email VARCHAR(256) NOT NULL,
                 PRIMARY KEY (IDEmail)
@@ -54,7 +54,7 @@ CREATE TABLE Email (
 
 
 CREATE TABLE Telefone (
-                IDTelefone TINYINT NOT NULL,
+                IDTelefone INT NOT NULL,
                 IDProprietario INT NOT NULL,
                 NumeroTelefone BIGINT NOT NULL,
                 PRIMARY KEY (IDTelefone)

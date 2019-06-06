@@ -1,25 +1,19 @@
-function ProprietarioDAO(application){
-	this._connection = application.config.dbconnection();
-}
-ProprietarioDAO.prototype.getProprietarios = function(callback){
-	this._connection.query("SELECT * FROM proprietario", callback);
+function ProprietarioDAO(connection){
+	this._connection = connection;
 }
 
-ProprietarioDAO.prototype.getProprietario = function( id, callback){
-	this._connection.query("SELECT * FROM proprietario WHERE idProprietario = " + id, callback);
+ProprietarioDAO.prototype.getProprietario = function(callback){
+	this._connection.query('select * from proprietario', callback);
 }
 
-ProprietarioDAO.prototype.removeProprietario = function( id, callback){
-	this._connection.query("DELETE FROM proprietario WHERE idProprietario = " + id, callback);
+ProprietarioDAO.prototype.salvarProprietario = function(proprietario, callback){
+    this._connection.query('insert into proprietario set ? ', proprietario, callback);
 }
 
-ProprietarioDAO.prototype.saveProprietario = function( proprietario, callback){
-	this._connection.query("INSERT INTO proprietario SET ?", proprietario, callback);
+ProprietarioDAO.prototype.obterProprietarios = function(callback){
+    this._connection.query('select * from proprietario order by Nome asc', callback);
 }
-ProprietarioDAO.prototype.editProprietario = function(id, proprietario, callback){
-	this._connection.query("UPDATE proprietario SET Nome = '" + proprietario.nome + 
-						"' WHERE idProprietario = "+ id, callback);
-}
+
 module.exports = function(){
 	return ProprietarioDAO;
 }
